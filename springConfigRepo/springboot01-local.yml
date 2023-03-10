@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: springboot01
+  pid:
+    file: /data1/api/springboot01.pid
+
+logging:
+  config: classpath:logback-local.xml

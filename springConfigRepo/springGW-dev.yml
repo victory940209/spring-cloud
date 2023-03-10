@@ -1,0 +1,54 @@
+server:
+  port:  8085
+
+
+spring:
+  application:
+    name: springGW
+  pid:
+    file: /data1/api/springGW.pid
+  cloud:
+    gateway:
+      routes:
+        - id: springboot01
+          uri: http://127.0.0.1:8081/
+          predicates:
+            - Path=/springboot01/**
+          filters:
+          - RewritePath=/springboot01/(?<path>.*), /$\{path}
+        - id: springboot02
+          uri: http://127.0.0.1:8082/
+          predicates: 
+            - Path=/springboot02/**
+          filters:
+          - RewritePath=/springboot02/(?<path>.*), /$\{path}
+        - id: springboot03
+          uri: http://127.0.0.1:8083/
+          predicates: 
+            - Path=/springboot03/**
+          filters:
+          - RewritePath=/springboot03/(?<path>.*), /$\{path}          
+        - id: openapi
+          uri: http://127.0.0.1:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+            
+springdoc:
+  swagger-ui:
+    urls[0]:
+      name: aas001
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot01
+    urls[1]:
+      name: aas002
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot02
+    urls[2]:
+      name: aas003
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot03
+      
+
+logging:
+  config: classpath:logback-dev.xml
+
+

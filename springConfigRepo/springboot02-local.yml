@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+---
+#pid file save path
+spring:
+  application:
+    name: springboot02
+  pid:
+    file: /data1/api/springboot02.pid
+
+logging:
+  config: classpath:logback-local.xml
+
+

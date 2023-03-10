@@ -1,0 +1,15 @@
+server:
+  port: 8083
+
+---
+#pid file save path
+spring:
+  application:
+    name: springboot03
+  pid:
+    file: /data1/api/springboot03.pid
+
+logging:
+  config: classpath:logback-dev.xml
+
+

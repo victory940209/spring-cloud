@@ -1,0 +1,57 @@
+server:
+  port:  8080
+
+---
+spring:
+  application:
+    name: springGW
+  pid:
+    file: /data1/api/springGW.pid
+  cloud:
+    gateway:
+      routes:
+        - id: springboot01
+          uri: http://127.0.0.1:8081/
+          predicates:
+            - Path=/springboot01/**
+          filters:
+          - RewritePath=/springboot01/(?<path>.*), /$\{path}
+        - id: aas002
+          uri: http://127.0.0.1:20020/
+          predicates: 
+            - Path=/aas002/**
+          filters:
+          - RewritePath=/aas002/(?<path>.*), /$\{path}
+        - id: aas003
+          uri: http://127.0.0.1:20030/
+          predicates: 
+            - Path=/aas003/**
+          filters:
+          - RewritePath=/aas003/(?<path>.*), /$\{path}          
+        - id: aas004
+          uri: http://127.0.0.1:20040/
+          predicates: 
+            - Path=/aas004/**
+          filters:
+          - RewritePath=/aas004/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://127.0.0.1:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+            
+springdoc:
+  swagger-ui:
+    urls[0]:
+      name: springboot01
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot01
+      
+    urls[1]:
+      name: springboot02
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot02
+    urls[2]:
+      name: springboot03
+      url: http://127.0.0.1:${server.port}/v3/api-docs/springboot03
+
+      

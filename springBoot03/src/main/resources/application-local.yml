@@ -1,0 +1,24 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: springboot03
+  pid:
+    file: /data1/api/springboot01.pid
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+logging:
+  config: classpath:logback-local.xml
+  
+springdoc:
+  swagger-ui:
+    path: /doc/swagger
+    operations-sorter: method
+    

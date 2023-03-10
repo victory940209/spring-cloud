@@ -1,0 +1,27 @@
+server:
+  port: 8888
+---
+spring:
+  application:
+    name: springConfig
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/victory940209/spring-cloud.git
+          search-paths: 'springConfig'
+---
+logging:
+  config: classpath:logback-dev.xml
+---
+# actuator 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+
+

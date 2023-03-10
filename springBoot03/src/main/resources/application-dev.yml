@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: springboot03
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://127.0.0.1:8888
+    use-legacy-processing: true
