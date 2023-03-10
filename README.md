@@ -4,13 +4,14 @@
 
 <사용>
 
-spring-boot
-spring-gateway
-spring-eureka
+spring-boot, 
+spring-gateway, 
+spring-eureka, 
 spring-config
 
 
 <버전정보>
+
 jdk 11
 
 spring boot 2.7.8
