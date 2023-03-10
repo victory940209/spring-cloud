@@ -1,5 +1,5 @@
 server:
-  port:  8080
+  port:  8085
 
 ---
 spring:
@@ -16,24 +16,18 @@ spring:
             - Path=/springboot01/**
           filters:
           - RewritePath=/springboot01/(?<path>.*), /$\{path}
-        - id: aas002
-          uri: http://127.0.0.1:20020/
+        - id: springboot02
+          uri: http://127.0.0.1:8082/
           predicates: 
-            - Path=/aas002/**
+            - Path=/springboot02/**
           filters:
-          - RewritePath=/aas002/(?<path>.*), /$\{path}
-        - id: aas003
-          uri: http://127.0.0.1:20030/
+          - RewritePath=/springboot02/(?<path>.*), /$\{path}
+        - id: springboot03
+          uri: http://127.0.0.1:8083/
           predicates: 
-            - Path=/aas003/**
+            - Path=/springboot03/**
           filters:
-          - RewritePath=/aas003/(?<path>.*), /$\{path}          
-        - id: aas004
-          uri: http://127.0.0.1:20040/
-          predicates: 
-            - Path=/aas004/**
-          filters:
-          - RewritePath=/aas004/(?<path>.*), /$\{path}
+          - RewritePath=/springboot03/(?<path>.*), /$\{path}          
         - id: openapi
           uri: http://127.0.0.1:${server.port}
           predicates:
